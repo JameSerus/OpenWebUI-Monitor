@@ -81,7 +81,7 @@ export async function getOrCreateUser(userData: any) {
       userData.email,
       userData.name,
       userData.role || "user",
-      process.env.INIT_BALANCE || "0",
+      process.env.INIT_BALANCE || "10",
     ]
   );
 
