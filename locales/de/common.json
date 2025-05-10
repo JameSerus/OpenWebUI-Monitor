@@ -1,0 +1,334 @@
+{
+  "common": {
+    "appName": "SoKI Monitor",
+    "description": "Plattform für Nutzungsüberwachung für SoKI",
+    "loading": "Laden...",
+    "error": "Das Laden ist fehlgeschlagen",
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "back": "Zurück",
+    "currency": "€",
+    "count": "",
+    "total": "Gesamt",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "page": "Seite",
+    "notSet": "Nicht gesetzt",
+    "enterValue": "Wert eingeben"
+  },
+
+  "auth": {
+    "accessToken": "Zugriffstoken",
+    "accessTokenPlaceholder": "Bitte Zugriffstoken eingeben",
+    "accessTokenHelp": "ACCESS_TOKEN Umgebungsvariable",
+    "accessTokenRequired": "Bitte Zugriffstoken eingeben",
+    "showToken": "Token anzeigen",
+    "verifying": "Verifzierung...",
+    "verificationFailed": "Verifizierung fehlgeschlagen",
+    "unauthorized": "Nicht autorisiert, bitte erneut anmelden",
+    "invalidToken": "Ungültiges Zugriffstoken",
+    "loginSuccess": "Token-Verifizierung erfolgreich"
+  },
+
+  "header": {
+    "menu": {
+      "copyApiKey": "API-Schlüssel kopieren",
+      "dataBackup": "Datenmigration",
+      "checkUpdate": "Update Check",
+      "logout": "Logout",
+      "settings": "Einstellungen",
+      "title": "Optionen"
+    },
+    "messages": {
+      "unauthorized": "Nicht autorisiert, bitte erneut anmelden",
+      "apiKeyNotSet": "API-Schlüssel nicht gesetzt oder konnte nicht geladen werden",
+      "apiKeyCopied": "API-Schlüssel in die Zwischenablage kopiert",
+      "updateCheckFailed": "Prüfung auf Updates fehlgeschlagen",
+      "latestVersion": "Aktuelle Version ist auf dem neuesten Stand",
+      "getVersionFailed": "Versionnummer nicht gefunden"
+    },
+    "update": {
+      "newVersion": "Neue Version verfügbar",
+      "currentVersion": "Aktuelle Version",
+      "latestVersion": "Neueste Version",
+      "skipUpdate": "Update überspringen",
+      "goToUpdate": "Gehe zu Update"
+    },
+    "language": {
+      "de": "DE",
+      "en": "EN"
+    }
+  },
+
+  "home": {
+    "features": {
+      "models": {
+        "title": "Model",
+        "description": "Preisverwaltung"
+      },
+      "users": {
+        "title": "Nutzer",
+        "description": "Guthabenverwaltung"
+      },
+      "stats": {
+        "title": "Nutzung",
+        "description": "Statistik und Visualisierung"
+      }
+    }
+  },
+
+  "models": {
+    "title": "Modellverwaltung",
+    "description": "Preis­konfigurationen für alle verfügbaren Modelle verwalten",
+    "testAll": "Alle Modelle testen",
+    "exportConfig": "Exportieren",
+    "importConfig": "Importieren",
+    "syncWithBaseModel": "Mit Basismodell synchronisieren",
+    "syncAllDerivedModels": "Alle abgeleiteten Modelle synchronisieren",
+    "syncSuccess": "Preis erfolgreich synchronisiert",
+    "syncFail": "Preissynchronisierung fehlgeschlagen",
+    "syncAllSuccess": "Alle abgeleiteten Modelle erfolgreich synchronisiert",
+    "syncAllFail": "Einige abgeleitete Modelle konnten nicht synchronisiert werden",
+    "noBaseModel": "Dieses Modell hat kein Basismodell",
+    "baseModelNotFound": "Basismodell nicht gefunden",
+    "noDerivedModels": "Keine abgeleiteten Modelle gefunden",
+    "syncing": "Wird synchronisiert",
+    "syncTooltip": "Preise vom Basismodell auf alle abgeleiteten Modelle übertragen. Dies aktualisiert die Preise der abgeleiteten Modelle basierend auf dem Preis des Basismodells.",
+    "testTooltip": "Klicken Sie auf das Modellsymbol, um es einzeln zu testen. Die Testergebnisse werden oben rechts im Symbol angezeigt.",
+    "test": {
+      "status": {
+        "valid": "Gültig",
+        "invalid": "Ungültig",
+        "pending": "Ausstehend",
+        "testing": "Wird getestet",
+        "complete": "Abgeschlossen"
+      },
+      "progress": {
+        "title": "Testfortschritt",
+        "detail": "Klicken Sie auf die Karte für Details"
+      },
+      "result": {
+        "success": "Gültige Modelle",
+        "failed": "Ungültige Modelle",
+        "complete": "Test abgeschlossen, klicken Sie auf die Karte für Details"
+      }
+    },
+    "table": {
+      "name": "Modell",
+      "inputPrice": "Eingabepreis € / Mio. Tokens",
+      "outputPrice": "Ausgabepreis € / Mio. Tokens",
+      "perMsgPrice": "Preis pro Nachricht € / Nachricht",
+      "notSet": "Nicht festgelegt",
+      "mobile": {
+        "inputPrice": "Eingabepreis",
+        "outputPrice": "Ausgabepreis",
+        "perMsgPrice": "Pro Nachricht"
+      },
+      "perMsgPriceTooltip": "Geben Sie einen negativen Wert ein, um nach Tokens statt pro Nachricht abzurechnen",
+      "enterPrice": "Preis eingeben",
+      "priceOverriddenByPerMsg": "Durch Nachrichtentarif überschrieben"
+    },
+    "testing": "Wird getestet",
+    "testComplete": "Test abgeschlossen",
+    "testingModels": "Modelle werden getestet",
+    "testSuccess": "Erfolgreich",
+    "testFailed": "Fehlgeschlagen",
+    "loading": "Modelldaten werden geladen..."
+  },
+
+  "users": {
+    "title": "Nutzerverwaltung",
+    "description": "Nutzerkonten und Guthaben verwalten. Sie können Nutzerdetails anzeigen, Guthaben anpassen oder Nutzer sperren.",
+    "userInfo": "Nutzerinformationen",
+    "balance": "Guthaben",
+    "id": "ID",
+    "name": "Name",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "userDetails": "Nutzerdetails",
+    "nickname": "Nickname",
+    "message": {
+      "updateBalance": {
+        "success": "Guthaben erfolgreich aktualisiert",
+        "error": "Fehler beim Aktualisieren des Guthabens"
+      },
+      "fetchUsersError": "Fehler beim Abrufen der Nutzerliste",
+      "invalidNumber": "Bitte geben Sie eine gültige Zahl ein",
+      "deleteSuccess": "Nutzer erfolgreich gelöscht",
+      "deleteError": "Fehler beim Löschen des Nutzers",
+      "blockSuccess": "Nutzer wurde erfolgreich gesperrt",
+      "blockError": "Fehler beim Sperren des Nutzers",
+      "unblockSuccess": "Nutzer wurde erfolgreich entsperrt",
+      "unblockError": "Fehler beim Entsperren des Nutzers",
+      "fetchError": "Fehler beim Abrufen der Nutzerliste"
+    },
+    "actions": "Aktionen",
+    "deleteConfirm": {
+      "title": "Löschen des Nutzers bestätigen",
+      "description": "Möchten Sie den Nutzer \"{{name}}\" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden und alle zugehörigen Daten werden gelöscht."
+    },
+    "total": "Gesamt",
+    "totalRecords": "Einträge",
+    "search": "Suchen",
+    "searchPlaceholder": "Nach Name oder E-Mail suchen...",
+    "pressEnter": "Drücken Sie die Eingabetaste zum Suchen",
+    "blacklist": {
+      "title": "Gesperrte Nutzer",
+      "block": "Sperren",
+      "unblock": "Entsperren",
+      "blockConfirm": {
+        "title": "Sperrung des Nutzers bestätigen",
+        "description": "Möchten Sie den Nutzer \"{{name}}\" wirklich sperren? Er kann den Dienst danach nicht mehr nutzen."
+      },
+      "unblockConfirm": {
+        "title": "Entsperrung des Nutzers bestätigen",
+        "description": "Möchten Sie den Nutzer \"{{name}}\" wirklich entsperren? Er kann den Dienst danach wieder nutzen."
+      }
+    },
+    "noResults": {
+      "title": "Keine Nutzer gefunden",
+      "default": "Derzeit sind keine Nutzer zur Anzeige vorhanden.",
+      "withFilter": "Keine Nutzer gefunden, die \"{{filter}}\" entsprechen."
+    },
+    "loading": "Nutzerdaten werden geladen..."
+  },
+
+  "records": {
+    "title": "Nutzungsaufzeichnungen",
+    "description": "Detaillierte Modellnutzungsdaten aller Nutzer anzeigen, einschließlich Nutzungszeit, verbrauchter Tokens und Kosten.",
+    "export": "Aufzeichnungen exportieren",
+    "dateRange": "Datumsbereich",
+    "columns": {
+      "user": "Nutzer",
+      "model": "Modell",
+      "tokens": "Tokens",
+      "cost": "Kosten",
+      "time": "Zeit",
+      "balance": "Guthaben"
+    }
+  },
+
+  "update": {
+    "newVersion": "Neue Version verfügbar",
+    "currentVersion": "Aktuelle Version",
+    "latestVersion": "Neueste Version",
+    "ignore": "Ignorieren",
+    "update": "Aktualisieren",
+    "skipUpdate": "Update überspringen",
+    "goToUpdate": "Update überspringen"
+  },
+
+  "backup": {
+    "title": "Datenmigration",
+    "description": "Datenbank-Backups exportieren oder importieren zur Migration und Wiederherstellung",
+    "export": {
+      "title": "Daten exportieren",
+      "description": "Aktuelle Daten als Backup-Datei exportieren",
+      "success": "Export erfolgreich",
+      "error": "Export fehlgeschlagen"
+    },
+    "import": {
+      "title": "Daten importieren",
+      "description": "Daten aus Backup-Datei wiederherstellen",
+      "success": "Import erfolgreich",
+      "error": "Import fehlgeschlagen"
+    }
+  },
+
+  "panel": {
+    "header": "Nutzungsstatistik-Dashboard – SoKI",
+    "title": "Nutzungsstatistiken",
+    "byAmount": "Nach Betrag",
+    "byCount": "Nach Anzahl",
+    "timeRange": {
+      "title": "Zeitraum",
+      "timeOptions": {
+        "day": "Heute",
+        "week": "Woche",
+        "month": "Monat",
+        "30Days": "30 Tage",
+        "all": "Alle",
+        "custom": "Benutzerdefiniert"
+      },
+      "customRange": "Benutzerdefinierter Zeitraum",
+      "selectTimeRange": "Zeitraum auswählen",
+      "selectDate": "Datum auswählen"
+    },
+    "modelUsage": {
+      "title": "Modellnutzung",
+      "total": "Gesamt",
+      "others": "Andere"
+    },
+    "userUsageChart": {
+      "title": "Verbrauch der Nutzer",
+      "yaxis": {
+        "byAmount": "Ausgegebener Betrag",
+        "byCount": "Nutzungsanzahl"
+      }
+    },
+    "usageDetails": {
+      "title": "Nutzungsdetails",
+      "table": {
+        "user": "Nutzer",
+        "time": "Zeit",
+        "model": "Modell",
+        "tokens": "Tokens",
+        "cost": "Kosten",
+        "balance": "Guthaben"
+      }
+    },
+    "description": "Modellnutzung, Verbrauchsdaten der Nutzer und detaillierte Nutzungsaufzeichnungen anzeigen.",
+    "overview": {
+      "totalModels": "Verwendete Modelle",
+      "totalUsers": "Aktive Nutzer",
+      "totalCost": "Gesamtkosten",
+      "totalCalls": "Gesamte Aufrufe",
+      "totalTokens": "Gesamte Tokens"
+    },
+    "report": {
+      "daily": "Tagesbericht",
+      "weekly": "Wochenbericht",
+      "monthly": "Monatsbericht",
+      "thirtyDays": "30-Tage-Bericht",
+      "overall": "Gesamtbericht",
+      "custom": "Benutzerdefinierter Zeitraum",
+      "mostUsedModel": "Am häufigsten verwendetes Modell",
+      "topUser": "Top-Benutzer",
+      "usageCount": "{{count}} Mal verwendet",
+      "spentAmount": "${{amount}} ausgegeben"
+    }
+  },
+  "error": {
+    "model": {
+      "failToFetchModels": "Modelle konnten nicht abgerufen werden",
+      "unknownError": "Unbekannter Fehler",
+      "failToFetchApiKey": "API-Schlüssel konnte nicht abgerufen werden",
+      "ApiKeyNotConfigured": "API-Schlüssel nicht konfiguriert",
+      "ApiKeyNotFetched": "API-Schlüssel nicht abgerufen",
+      "nonePositiveNumber": "Bitte geben Sie eine gültige positive Zahl ein",
+      "invalidNumber": "Bitte geben Sie eine gültige Zahl ein",
+      "priceUpdateFail": "Preisaktualisierung fehlgeschlagen",
+      "priceUpdateSuccess": "Preis erfolgreich aktualisiert",
+      "invalidImportFormat": "Ungültiges Importdatenformat",
+      "batchPriceUpdateFail": "Stapel-Preisaktualisierung fehlgeschlagen",
+      "serverResponse": "Antwort des Servers zum Updateergebnis",
+      "updateSuccess": "Aktualisierung erfolgreich",
+      "numberOfModelPrice": "Modellpreis(e)",
+      "failToImport": "Import fehlgeschlagen",
+      "failToExport": "Export fehlgeschlagen",
+      "failToTest": "Test fehlgeschlagen",
+      "failToTestWithoutApiKey": "API-Schlüssel nicht abgerufen, Test nicht möglich"
+    },
+    "panel": {
+      "fetchUsageDataFail": "Nutzungsdaten konnten nicht abgerufen werden"
+    },
+    "records": {
+      "usageRecord": "Nutzungsaufzeichnung",
+      "exportRecord": "Exportaufzeichnung"
+    }
+  }
+}
