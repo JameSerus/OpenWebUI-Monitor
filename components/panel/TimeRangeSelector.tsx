@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { deDE } from "date-fns/locale";
+import { de } from "date-fns/locale";
 
 export type TimeRangeType =
   | "today"
@@ -180,7 +180,7 @@ export default function TimeRangeSelector({
   const formatDate = (date?: Date) => {
     if (!date) return t("panel.timeRange.selectDate");
     return format(date, "yyyy-MM-dd", {
-      locale: i18n.language === "de" ? deDE : undefined,
+      locale: i18n.language === "de" ? de : undefined,
     });
   };
 
@@ -264,7 +264,7 @@ export default function TimeRangeSelector({
                         endDate ? dayjs(date).isAfter(endDate, "day") : false
                       }
                       initialFocus
-                      locale={i18n.language === "de" ? deDE : undefined}
+                      locale={i18n.language === "de" ? de : undefined}
                     />
                   </PopoverContent>
                 </Popover>
@@ -299,7 +299,7 @@ export default function TimeRangeSelector({
                           : false
                       }
                       initialFocus
-                      locale={i18n.language === "de" ? deDE : undefined}
+                      locale={i18n.language === "de" ? de : undefined}
                     />
                   </PopoverContent>
                 </Popover>
