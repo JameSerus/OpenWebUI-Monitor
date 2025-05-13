@@ -281,7 +281,7 @@ export default function RecordsPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <RangePicker
-                    locale={zhCN.DatePicker}
+                    locale={deDE.DatePicker}
                     className="!w-full sm:!w-auto"
                     onChange={(dates) => {
                       const newParams = {

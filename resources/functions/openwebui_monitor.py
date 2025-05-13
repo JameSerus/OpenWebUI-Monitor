@@ -49,7 +49,7 @@ class Filter:
         api_endpoint: str = Field(default="", description="openwebui-monitor's base url")
         api_key: str = Field(default="", description="openwebui-monitor's api key")
         priority: int = Field(default=5, description="filter priority")
-        language: str = Field(default="zh", description="language (en/zh)")
+        language: str = Field(default="de", description="language (en/de)")
         show_time_spent: bool = Field(default=True, description="show time spent")
         show_tokens_per_sec: bool = Field(default=True, description="show tokens per second")
         show_cost: bool = Field(default=True, description="show cost")
