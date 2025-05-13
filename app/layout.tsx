@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN">
+    <html lang="de-DE">
       <body>
         <div id="modal-root" className="relative z-[100]" />
         <I18nProvider>
