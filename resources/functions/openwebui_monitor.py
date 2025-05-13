@@ -22,19 +22,19 @@ TRANSLATIONS = {
     "en": {
         "request_failed": "Request failed: {error_msg}",
         "insufficient_balance": "Insufficient balance: Current balance `{balance:.4f}`",
-        "cost": "Cost: ${cost:.4f}",
-        "balance": "Balance: ${balance:.4f}",
+        "cost": "Cost: €{cost:.4f}",
+        "balance": "Balance: €{balance:.4f}",
         "tokens": "Tokens: {input}+{output}",
         "time_spent": "Time: {time:.2f}s",
         "tokens_per_sec": "{tokens_per_sec:.2f} T/s",
     },
-    "zh": {
-        "request_failed": "请求失败: {error_msg}",
-        "insufficient_balance": "余额不足: 当前余额 `{balance:.4f}`",
-        "cost": "费用: ¥{cost:.4f}",
-        "balance": "余额: ¥{balance:.4f}",
-        "tokens": "Token: {input}+{output}",
-        "time_spent": "耗时: {time:.2f}s",
+    "de": {
+        "request_failed": "Anfrage fehlgeschlagen: {error_msg}",
+        "insufficient_balance": "Zu wenig Guthaben: Aktuelles Guthaben `{balance:.4f}`",
+        "cost": "Kosten: €{cost:.4f}",
+        "balance": "Guthaben: €{balance:.4f}",
+        "tokens": "Tokens: {input}+{output}",
+        "time_spent": "Zeit: {time:.2f}s",
         "tokens_per_sec": "{tokens_per_sec:.2f} T/s",
     },
 }

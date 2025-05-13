@@ -10,7 +10,7 @@ import {
   TableOutlined,
 } from "@ant-design/icons";
 import type { RangePickerProps } from "antd/es/date-picker";
-import zhCN from "antd/lib/locale/zh_CN";
+import deDE from "antd/lib/locale/de_DE";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
