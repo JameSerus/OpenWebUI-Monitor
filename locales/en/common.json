@@ -1,7 +1,7 @@
 {
   "common": {
-    "appName": "OpenWebUI Monitor",
-    "description": "Usage monitoring and balance management platform for OpenWebUI",
+    "appName": "SoKI Monitor",
+    "description": "Usage monitoring and balance management platform for SoKI",
     "loading": "Loading...",
     "error": "Failed to load",
     "confirm": "Confirm",
@@ -240,7 +240,7 @@
   },
 
   "panel": {
-    "header": "Usage Statistics Dashboard - OpenWebUI",
+    "header": "Usage Statistics Dashboard - SoKI",
     "title": "Usage Statistics",
     "byAmount": "By Amount",
     "byCount": "By Count",

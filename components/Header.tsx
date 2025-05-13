@@ -321,7 +321,7 @@ export default function Header() {
   const actionItems = [
     {
       icon: <Globe className="w-5 h-5" />,
-      label: i18n.language === "zh" ? "简体中文" : "English",
+      label: i18n.language === "zh" ? "Deutsch" : "English",
       onClick: () => handleLanguageChange(i18n.language === "zh" ? "en" : "zh"),
       color: "from-gray-100 to-gray-50",
       hoverColor: "group-hover:text-gray-900",

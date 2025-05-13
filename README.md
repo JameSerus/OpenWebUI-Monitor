@@ -4,7 +4,7 @@
 
 # OpenWebUI Monitor
 
-**English** / [简体中文](./resources/tutorials/zh-cn/README_zh.md)
+**English** / [Deutsch](./resources/tutorials/zh-cn/README_zh.md)
 
 </div>
 
