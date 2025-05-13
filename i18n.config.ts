@@ -17,7 +17,7 @@ i18n
         common: enCommon,
       },
     },
-    fallbackLng: "en",
+    fallbackLng: "de",
     interpolation: {
       escapeValue: false,
     },

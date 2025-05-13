@@ -6,7 +6,7 @@ import { I18nextProvider, initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
 import enCommon from "@/locales/en/common.json";
-import zhCommon from "@/locales/zh/common.json";
+import deCommon from "@/locales/de/common.json";
 
 const i18n = i18next
   .use(LanguageDetector)
@@ -16,11 +16,11 @@ const i18n = i18next
       en: {
         common: enCommon,
       },
-      zh: {
-        common: zhCommon,
+      de: {
+        common: deCommon,
       },
     },
-    fallbackLng: "zh",
+    fallbackLng: "de",
     interpolation: {
       escapeValue: false,
     },
