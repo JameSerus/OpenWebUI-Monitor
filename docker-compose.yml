@@ -35,6 +35,20 @@ services:
       timeout: 5s
       retries: 5
     restart: always
+  
+  pgadmin:
+    image: dpage/pgadmin4:9.4.0
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bla@bla.bla
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - 15432:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
+  pgadmin:

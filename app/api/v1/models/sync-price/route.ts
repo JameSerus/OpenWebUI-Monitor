@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       }
 
       const baseModelResult = await client.query(
-        `SELECT input_price, output_price, per_msg_price FROM model_prices WHERE id = $1`,
+        `SELECT input_price, output_price, per_msg_price, rag_price FROM model_prices WHERE id = $1`,
         [baseModelId]
       );
 

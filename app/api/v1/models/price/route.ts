@@ -7,6 +7,7 @@ interface PriceUpdate {
   input_price: number;
   output_price: number;
   per_msg_price: number;
+  rag_price: number;
 }
 
 export async function POST(request: NextRequest) {
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
         input_price: Number(update.input_price),
         output_price: Number(update.output_price),
         per_msg_price: Number(update.per_msg_price ?? -1),
+        rag_price: Number(update.rag_price),
       }))
       .filter((update: PriceUpdate) => {
         const isValidPrice = (price: number) =>
@@ -43,7 +45,8 @@ export async function POST(request: NextRequest) {
           !update.id ||
           !isValidPrice(update.input_price) ||
           !isValidPrice(update.output_price) ||
-          !isValidPrice(update.per_msg_price)
+          !isValidPrice(update.per_msg_price) ||
+          !isValidPrice(update.rag_price)
         ) {
           console.log("Skipping invalid data:", update);
           return false;
@@ -64,13 +67,15 @@ export async function POST(request: NextRequest) {
             input_price: update.input_price,
             output_price: update.output_price,
             per_msg_price: update.per_msg_price,
+            rag_price: update.rag_price,
           });
 
           const result = await updateModelPrice(
             update.id,
             update.input_price,
             update.output_price,
-            update.per_msg_price
+            update.per_msg_price,
+            update.rag_price,
           );
 
           console.log("Update results:", {

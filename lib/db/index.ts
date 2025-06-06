@@ -12,6 +12,9 @@ async function ensureModelPricesTableExists() {
   const defaultPerMsgPrice = parseFloat(
     process.env.DEFAULT_MODEL_PER_MSG_PRICE || "-1"
   );
+  const defaultRagPrice = parseFloat(
+    process.env.DEFAULT_MODEL_RAG_PRICE || "0"
+  );
 
   await query(
     `CREATE TABLE IF NOT EXISTS model_prices (
@@ -20,9 +23,10 @@ async function ensureModelPricesTableExists() {
       input_price DECIMAL(10, 6) DEFAULT CAST($1 AS DECIMAL(10, 6)),
       output_price DECIMAL(10, 6) DEFAULT CAST($2 AS DECIMAL(10, 6)),
       per_msg_price DECIMAL(10, 6) DEFAULT CAST($3 AS DECIMAL(10, 6)),
+      rag_price DECIMAL(10, 6) DEFAULT CAST ($4 AS DECIMAL(10, 6)),
       updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );`,
-    [defaultInputPrice, defaultOutputPrice, defaultPerMsgPrice]
+    [defaultInputPrice, defaultOutputPrice, defaultPerMsgPrice, defaultRagPrice]
   );
 
   await query(
@@ -52,14 +56,17 @@ export async function getOrCreateModelPrice(
     const defaultPerMsgPrice = parseFloat(
       process.env.DEFAULT_MODEL_PER_MSG_PRICE || "-1"
     );
+    const defaultRagPrice = parseFloat(
+      process.env.DEFAULT_MODEL_RAG_PRICE || "0"
+    );
 
     const result = await query(
-      `INSERT INTO model_prices (id, model_name, per_msg_price, updated_at)
-       VALUES ($1, $2, CAST($3 AS DECIMAL(10, 6)), CURRENT_TIMESTAMP)
+      `INSERT INTO model_prices (id, model_name, per_msg_price, rag_price, updated_at)
+       VALUES ($1, $2, CAST($3 AS DECIMAL(10, 6)), CAST($4 AS DECIMAL(10, 6)), CURRENT_TIMESTAMP)
        ON CONFLICT (id) DO UPDATE 
        SET model_name = $2, updated_at = CURRENT_TIMESTAMP
        RETURNING *`,
-      [id, name, defaultPerMsgPrice]
+      [id, name, defaultPerMsgPrice, defaultRagPrice]
     );
 
     return {
@@ -68,6 +75,7 @@ export async function getOrCreateModelPrice(
       input_price: Number(result.rows[0].input_price),
       output_price: Number(result.rows[0].output_price),
       per_msg_price: Number(result.rows[0].per_msg_price),
+      rag_price: Number(result.rows[0].rag_price),
       updated_at: result.rows[0].updated_at,
     };
   } catch (error: any) {

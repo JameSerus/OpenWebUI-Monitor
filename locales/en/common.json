@@ -122,6 +122,7 @@
       "inputPrice": "Input Price $ / M tokens",
       "outputPrice": "Output Price $ / M tokens",
       "perMsgPrice": "Per Message Price $ / Message",
+      "ragPrice": "RAG Price $",
       "notSet": "Not Set",
       "mobile": {
         "inputPrice": "Input Price",
@@ -129,6 +130,7 @@
         "perMsgPrice": "Per Message"
       },
       "perMsgPriceTooltip": "Set a negative value to charge by tokens instead of per message",
+      "RAGPriceTooltip": "Additive base price per message",
       "enterPrice": "Enter price",
       "priceOverriddenByPerMsg": "Overridden by per message price"
     },

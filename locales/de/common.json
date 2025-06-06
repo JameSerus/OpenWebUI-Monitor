@@ -122,6 +122,7 @@
       "inputPrice": "Eingabepreis € / Mio. Tokens",
       "outputPrice": "Ausgabepreis € / Mio. Tokens",
       "perMsgPrice": "Preis pro Nachricht € / Nachricht",
+      "ragPrice": "RAG Preis €",
       "notSet": "Nicht festgelegt",
       "mobile": {
         "inputPrice": "Eingabepreis",
@@ -129,6 +130,7 @@
         "perMsgPrice": "Pro Nachricht"
       },
       "perMsgPriceTooltip": "Geben Sie einen negativen Wert ein, um nach Tokens statt pro Nachricht abzurechnen",
+      "RAGPriceTooltip": "Additiver Basispreis pro Nachricht",
       "enterPrice": "Preis eingeben",
       "priceOverriddenByPerMsg": "Durch Nachrichtentarif überschrieben"
     },

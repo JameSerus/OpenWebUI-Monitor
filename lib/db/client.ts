@@ -195,6 +195,9 @@ export async function ensureTablesExist() {
     const defaultPerMsgPrice = parseFloat(
       process.env.DEFAULT_MODEL_PER_MSG_PRICE || "-1"
     );
+    const defaultRagPrice = parseFloat(
+      process.env.DEFAULT_MODEL_RAG_PRICE || "0"
+    );
 
     if (!modelPricesTableExists.rows[0].exists) {
       await query(`
@@ -205,6 +208,7 @@ export async function ensureTablesExist() {
           input_price NUMERIC(10, 6) DEFAULT ${defaultInputPrice},
           output_price NUMERIC(10, 6) DEFAULT ${defaultOutputPrice},
           per_msg_price NUMERIC(10, 6) DEFAULT ${defaultPerMsgPrice},
+          rag_price NUMERIC(10, 6) DEFAULT ${defaultRagPrice},
           updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
       `);
@@ -289,6 +293,7 @@ export interface ModelPrice {
   input_price: number;
   output_price: number;
   per_msg_price: number;
+  rag_price: number;
   updated_at: Date;
 }
 
@@ -316,6 +321,9 @@ export async function getOrCreateModelPrices(
     );
     const defaultPerMsgPrice = parseFloat(
       process.env.DEFAULT_MODEL_PER_MSG_PRICE || "-1"
+    );
+    const defaultRagPrice = parseFloat(
+      process.env.DEFAULT_MODEL_RAG_PRICE || "0"
     );
 
     const modelIds = models.map((m) => m.id);
@@ -357,8 +365,8 @@ export async function getOrCreateModelPrices(
           : null;
 
         await query(
-          `INSERT INTO model_prices (id, name, input_price, output_price, per_msg_price)
-           VALUES ($1, $2, $3, $4, $5)
+          `INSERT INTO model_prices (id, name, input_price, output_price, per_msg_price, rag_price)
+           VALUES ($1, $2, $3, $4, $5, $6)
            RETURNING *`,
           [
             model.id,
@@ -366,6 +374,7 @@ export async function getOrCreateModelPrices(
             baseModel?.input_price ?? defaultInputPrice,
             baseModel?.output_price ?? defaultOutputPrice,
             baseModel?.per_msg_price ?? defaultPerMsgPrice,
+            baseModel?.rag_price ?? defaultRagPrice,
           ]
         );
       }
@@ -382,6 +391,7 @@ export async function getOrCreateModelPrices(
       input_price: Number(row.input_price),
       output_price: Number(row.output_price),
       per_msg_price: Number(row.per_msg_price),
+      rag_price: Number(row.rag_price),
       updated_at: row.updated_at,
     }));
   } catch (error) {
@@ -394,7 +404,8 @@ export async function updateModelPrice(
   id: string,
   input_price: number,
   output_price: number,
-  per_msg_price: number
+  per_msg_price: number,
+  rag_price: number,
 ): Promise<ModelPrice | null> {
   try {
     const result = await query(
@@ -403,10 +414,11 @@ export async function updateModelPrice(
          input_price = CAST($2 AS NUMERIC(10,6)),
          output_price = CAST($3 AS NUMERIC(10,6)),
          per_msg_price = CAST($4 AS NUMERIC(10,6)),
+         rag_price = CAST($5 AS NUMERIC(10,6)),
          updated_at = CURRENT_TIMESTAMP
        WHERE id = $1
        RETURNING *`,
-      [id, input_price, output_price, per_msg_price]
+      [id, input_price, output_price, per_msg_price, rag_price]
     );
 
     if (result.rows[0]) {
@@ -416,6 +428,7 @@ export async function updateModelPrice(
         input_price: Number(result.rows[0].input_price),
         output_price: Number(result.rows[0].output_price),
         per_msg_price: Number(result.rows[0].per_msg_price),
+        rag_price: Number(result.rows[0].rag_price),
         updated_at: result.rows[0].updated_at,
       };
     }

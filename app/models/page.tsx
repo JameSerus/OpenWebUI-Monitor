@@ -28,6 +28,7 @@ interface ModelResponse {
   input_price: number;
   output_price: number;
   per_msg_price: number;
+  rag_price: number;
 }
 
 interface Model {
@@ -39,6 +40,7 @@ interface Model {
   input_price: number;
   output_price: number;
   per_msg_price: number;
+  rag_price: number;
   testStatus?: "success" | "error" | "testing";
   syncStatus?: "syncing" | "success" | "error";
 }
@@ -253,7 +255,7 @@ export default function ModelsPage() {
   const [error, setError] = useState<string | null>(null);
   const [editingCell, setEditingCell] = useState<{
     id: string;
-    field: "input_price" | "output_price" | "per_msg_price";
+    field: "input_price" | "output_price" | "per_msg_price" | "rag_price";
   } | null>(null);
   const [testing, setTesting] = useState(false);
   const [apiKey, setApiKey] = useState<string | null>(null);
@@ -279,6 +281,7 @@ export default function ModelsPage() {
             input_price: model.input_price ?? 60,
             output_price: model.output_price ?? 60,
             per_msg_price: model.per_msg_price ?? -1,
+            rag_price: model.rag_price ?? 0,
           }))
         );
       } catch (err) {
@@ -327,7 +330,7 @@ export default function ModelsPage() {
 
   const handlePriceUpdate = async (
     id: string,
-    field: "input_price" | "output_price" | "per_msg_price",
+    field: "input_price" | "output_price" | "per_msg_price" | "rag_price",
     value: number
   ): Promise<void> => {
     try {
@@ -345,12 +348,18 @@ export default function ModelsPage() {
         throw new Error(t("error.model.invalidNumber"));
       }
 
+      if (field === "rag_price" && !isFinite(validValue)) {
+        throw new Error(t("error.model.invalidNumber"));
+      }
+
       const input_price =
         field === "input_price" ? validValue : model.input_price;
       const output_price =
         field === "output_price" ? validValue : model.output_price;
       const per_msg_price =
         field === "per_msg_price" ? validValue : model.per_msg_price;
+      const rag_price =
+        field === "rag_price" ? validValue : model.rag_price;
 
       const token = localStorage.getItem("access_token");
       const response = await fetch("/api/v1/models/price", {
@@ -366,6 +375,7 @@ export default function ModelsPage() {
               input_price: Number(input_price),
               output_price: Number(output_price),
               per_msg_price: Number(per_msg_price),
+              rag_price: Number(rag_price),
             },
           ],
         }),
@@ -384,6 +394,7 @@ export default function ModelsPage() {
                   input_price: Number(data.results[0].data.input_price),
                   output_price: Number(data.results[0].data.output_price),
                   per_msg_price: Number(data.results[0].data.per_msg_price),
+                  rag_price: Number(data.results[0].data.rag_price),
                 }
               : model
           )
@@ -457,6 +468,7 @@ export default function ModelsPage() {
                 input_price: syncedModel.input_price,
                 output_price: syncedModel.output_price,
                 per_msg_price: syncedModel.per_msg_price,
+                rag_price: syncedModel.rag_price,
               };
             }
             return model;
@@ -564,6 +576,22 @@ export default function ModelsPage() {
       sortDirections: ["descend", "ascend", "descend"],
       render: (_, record) => renderPriceCell("per_msg_price", record, true),
     },
+    {
+      title: (
+        <span>
+          {t("models.table.ragPrice")}{" "}
+          <Tooltip title={t("models.table.RAGPriceTooltip")}>
+            <InfoCircleOutlined className="text-gray-400 cursor-help" />
+          </Tooltip>
+        </span>
+      ),
+      key: "rag_price",
+      width: 150,
+      dataIndex: "rag_price",
+      sorter: (a, b) => a.rag_price - b.rag_price,
+      sortDirections: ["descend", "ascend", "descend"],
+      render: (_, record) => renderPriceCell("rag_price", record, true),
+    },
   ];
 
   const handleExportPrices = () => {
@@ -572,6 +600,7 @@ export default function ModelsPage() {
       input_price: model.input_price,
       output_price: model.output_price,
       per_msg_price: model.per_msg_price,
+      rag_price: model.rag_price
     }));
 
     const blob = new Blob([JSON.stringify(priceData, null, 2)], {
@@ -628,6 +657,7 @@ export default function ModelsPage() {
                   input_price: Number(update.data.input_price),
                   output_price: Number(update.data.output_price),
                   per_msg_price: Number(update.data.per_msg_price),
+                  rag_price: Number(update.data.rag_price),
                 };
               }
               return model;
@@ -836,7 +866,7 @@ export default function ModelsPage() {
   };
 
   const renderPriceCell = (
-    field: "input_price" | "output_price" | "per_msg_price",
+    field: "input_price" | "output_price" | "per_msg_price" | "rag_price",
     record: Model,
     showTooltip: boolean = true
   ) => {

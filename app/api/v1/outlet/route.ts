@@ -18,13 +18,14 @@ interface ModelPrice {
   input_price: number;
   output_price: number;
   per_msg_price: number;
+  rag_price: number;
 }
 
 type DbClient = ReturnType<typeof createClient> | Pool | PoolClient;
 
 async function getModelPrice(modelId: string): Promise<ModelPrice | null> {
   const result = await query(
-    `SELECT id, name, input_price, output_price, per_msg_price 
+    `SELECT id, name, input_price, output_price, per_msg_price, rag_price 
      FROM model_prices 
      WHERE id = $1`,
     [modelId]
@@ -40,6 +41,9 @@ async function getModelPrice(modelId: string): Promise<ModelPrice | null> {
   const defaultOutputPrice = parseFloat(
     process.env.DEFAULT_MODEL_OUTPUT_PRICE || "60"
   );
+  const defaultRagPrice = parseFloat(
+    process.env.DEFAULT_MODEL_RAG_PRICE || "0"
+  )
 
   if (
     isNaN(defaultInputPrice) ||
@@ -56,6 +60,7 @@ async function getModelPrice(modelId: string): Promise<ModelPrice | null> {
     input_price: defaultInputPrice,
     output_price: defaultOutputPrice,
     per_msg_price: -1,
+    rag_price: defaultRagPrice,
   };
 }
 
@@ -114,7 +119,8 @@ export async function POST(req: Request) {
     } else {
       const inputCost = (inputTokens / 1_000_000) * modelPrice.input_price;
       const outputCost = (outputTokens / 1_000_000) * modelPrice.output_price;
-      totalCost = inputCost + outputCost;
+      const ragCost = modelPrice.rag_price;
+      totalCost = inputCost + outputCost + ragCost;
     }
 
     const inletCost = getModelInletCost(modelId);
@@ -172,10 +178,13 @@ export async function POST(req: Request) {
       })
     );
 
+    const ragTokens = modelPrice.rag_price / (modelPrice.input_price / 1_000_000)
+
     return NextResponse.json({
       success: true,
       inputTokens,
       outputTokens,
+      ragTokens,
       totalCost,
       newBalance,
       message: "Request successful",

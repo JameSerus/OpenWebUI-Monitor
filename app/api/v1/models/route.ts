@@ -101,6 +101,7 @@ export async function GET(req: Request) {
         input_price: model.input_price,
         output_price: model.output_price,
         per_msg_price: model.per_msg_price,
+        rag_price: model.rag_price,
         updated_at: model.updated_at,
       });
     });
@@ -111,6 +112,7 @@ export async function GET(req: Request) {
           input_price: 60,
           output_price: 60,
           per_msg_price: -1,
+          rag_price: 0,
           updated_at: new Date(),
         };
 
@@ -131,6 +133,7 @@ export async function GET(req: Request) {
           input_price: dbModel.input_price,
           output_price: dbModel.output_price,
           per_msg_price: dbModel.per_msg_price,
+          rag_price: dbModel.rag_price,
           updated_at: dbModel.updated_at,
         };
       }
