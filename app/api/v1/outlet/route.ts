@@ -74,6 +74,8 @@ export async function POST(req: Request) {
     const modelId = data.body.model;
     const userId = data.user.id;
     const userName = data.user.name || "Unknown User";
+    const chunk_size = data.chunk_size
+    const top_k = data.top_k
 
     await query("BEGIN");
 
@@ -102,6 +104,8 @@ export async function POST(req: Request) {
       inputTokens = totalTokens - outputTokens;
     }
 
+    const rag_cost = chunk_size * top_k * (modelPrice.input_price / 1_000_000)
+
     let totalCost: number;
     if (outputTokens === 0) {
       totalCost = 0;
@@ -114,7 +118,7 @@ export async function POST(req: Request) {
     } else {
       const inputCost = (inputTokens / 1_000_000) * modelPrice.input_price;
       const outputCost = (outputTokens / 1_000_000) * modelPrice.output_price;
-      totalCost = inputCost + outputCost;
+      totalCost = inputCost + outputCost + rag_cost;
     }
 
     const inletCost = getModelInletCost(modelId);
