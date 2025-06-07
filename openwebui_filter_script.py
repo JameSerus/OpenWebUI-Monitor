@@ -163,9 +163,11 @@ class Filter:
         client = AsyncClient()
 
         try:
-            model_data = await client.get(url=f"{self.valves.owui_endpoint}/api/models", headers={"Authorization": f"Bearer {self.valves.owui_api_key}"}).json()
-            target_model_id=body.model
-            model = next((m for m in model_data if m["id"] == target_model_id))
+            model_response = await client.get(url=f"{self.valves.owui_endpoint}/api/models", headers={"Authorization": f"Bearer {self.valves.owui_api_key}"})
+            model_data = model_response.json()
+            target_model_id = body.get("model")
+            models = model_data.get("data", [])
+            model = next((m for m in models if m["id"] == target_model_id), None)
 
             local_chunk_size = 0
             local_top_k = 0
@@ -184,6 +186,7 @@ class Filter:
                     "user": __user__,
                     "chunk_size": local_chunk_size,
                     "top_k": local_top_k,
+                    "system_prompt": model.get("info", {}).get("params", {}).get("system", {}),
                     "body": body
                 },
             )
@@ -193,7 +196,7 @@ class Filter:
                 stats_list.append(
                     self.get_text(
                         "tokens",
-                        context=local_chunk_size*local_top_k,
+                        context=local_chunk_size*local_top_k+response_data["systemPromptTokens"],
                         input=response_data["inputTokens"],
                         output=response_data["outputTokens"],
                     )

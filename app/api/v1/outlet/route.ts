@@ -75,6 +75,7 @@ export async function POST(req: Request) {
     const userId = data.user.id;
     const userName = data.user.name || "Unknown User";
     const chunk_size = data.chunk_size
+    const system_prompt = data.system_prompt
     const top_k = data.top_k
 
     await query("BEGIN");
@@ -88,6 +89,7 @@ export async function POST(req: Request) {
 
     let inputTokens: number;
     let outputTokens: number;
+    let systemPromptTokens: number;
     if (
       lastMessage.usage &&
       lastMessage.usage.prompt_tokens &&
@@ -104,7 +106,8 @@ export async function POST(req: Request) {
       inputTokens = totalTokens - outputTokens;
     }
 
-    const rag_cost = chunk_size * top_k * (modelPrice.input_price / 1_000_000)
+    systemPromptTokens = encode(system_prompt).length
+    const rag_cost = (systemPromptTokens + chunk_size * top_k) * (modelPrice.input_price / 1_000_000)
 
     let totalCost: number;
     if (outputTokens === 0) {
@@ -180,6 +183,7 @@ export async function POST(req: Request) {
       success: true,
       inputTokens,
       outputTokens,
+      systemPromptTokens,
       totalCost,
       newBalance,
       message: "Request successful",
