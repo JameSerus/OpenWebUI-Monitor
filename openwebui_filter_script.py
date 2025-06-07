@@ -171,12 +171,18 @@ class Filter:
 
             local_chunk_size = 0
             local_top_k = 0
+            local_system_prompt = ""
 
             if model:
                 knowledge = model.get("info", {}).get("meta", {}).get("knowledge", [])
                 if knowledge:
                     local_chunk_size = self.valves.chunk_size
                     local_top_k = self.valves.top_k
+                system_prompt = model.get("info", {}).get("params", {}).get("system", {})
+                if system_prompt:
+                    local_system_prompt = system_prompt
+
+            
 
             response_data = await self.request(
                 client=client,
@@ -186,7 +192,7 @@ class Filter:
                     "user": __user__,
                     "chunk_size": local_chunk_size,
                     "top_k": local_top_k,
-                    "system_prompt": model.get("info", {}).get("params", {}).get("system", {}),
+                    "system_prompt": local_system_prompt,
                     "body": body
                 },
             )
